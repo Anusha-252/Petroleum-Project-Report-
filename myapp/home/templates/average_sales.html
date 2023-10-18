@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Average Sales by Interval</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; margin: 0; padding: 0;">
+    <h1 style="background-color: #3498db; color: #fff; padding: 20px; font-size: 36px; letter-spacing: 2px;">Average Sales by Interval</h1>
+    <hr style="border: 1px solid #3498db; margin: 20px 0;">
+    <p style="font-size: 18px;">This page lists the average sale of each petroleum product for the interval of four years, as mentioned by problem v of the assignment.</p>
+    
+    <div style="overflow: auto; max-height: 70vh;">
+        <table style="border-collapse: collapse; width: 80%; margin: 0 auto;">
+            <tr style="background-color: #3498db; color: #fff;">
+                <th style="padding: 10px;">Product</th>
+                <th style="padding: 10px;">Year</th>
+                <th style="padding: 10px;">Avg</th>
+            </tr>
+            {% for result in results %}
+                <tr style="background-color: #f0f0f0; border: 1px solid #3498db;">
+                    <td style="padding: 10px;">{{ result.Product }}</td>
+                    <td style="padding: 10px;">{{ result.Year }}</td>
+                    <td style="padding: 10px;">{{ result.Avg }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

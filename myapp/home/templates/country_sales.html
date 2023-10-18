@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top and Lowest Countries by Sales</title>
+    <p style="font-size: 18px;">This page renders the top three countries with the highest and lowest sales, respectively, as mentioned by problem iv of the assignment.</p>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; margin: 0; padding: 0;">
+    <h1 style="background-color: #3498db; color: #fff; padding: 20px; font-size: 36px; letter-spacing: 2px;">Top 3 Countries with the Highest Total Sales</h1>
+    <ul style="list-style-type: none; padding: 0;">
+        {% for item in top_highest_sales %}
+            <li style="font-size: 20px; margin: 10px; background-color: #3498db; color: #fff; padding: 10px;">
+                {{ item.country__name }}: {{ item.total_sale }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h1 style="font-size: 36px; letter-spacing: 2px;">Top 3 Countries with the Lowest Total Sales</h1>
+    <ul style="list-style-type: none; padding: 0;">
+        {% for item in top_lowest_sales %}
+            <li style="font-size: 20px; margin: 10px; background-color: #e74c3c; color: #fff; padding: 10px;">
+                {{ item.country__name }}: {{ item.total_sale }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

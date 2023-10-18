@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Petroleum Products Sales Report</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            background-color: #3498db;
+            padding: 20px;
+            color: #fff;
+            font-size: 36px;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #3498db;
+            margin: 10px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #eee7e7;
+        }
+
+        .styled-table {
+            
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .step-links {
+            display: flex;
+        }
+
+        .pagination-link {
+            padding: 5px 10px;
+            text-decoration: none;
+            background-color: #e74c3c;
+            color: #fff;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination-link:hover {
+            background-color: #c0392b;
+        }
+
+        .current-page {
+            margin: 0 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Petroleum Products Sales Report</h1>
+    <p>This Page renders all the data that is present in the API, and stored in Sqlite. Pagination is added to view all the data.</p>
+    
+    <!-- Filter Form -->
+    <form method="get" action="{% url 'report' %}">
+        <!-- Add your filter form inputs here -->
+    </form>
+
+    <!-- Sales Data Table -->
+    <table class="styled-table">
+        <tr>
+            <th>Year</th>
+            <th>Month</th>
+            <th>Country</th>
+            <th>Petroleum Product</th>
+            <th>Sales</th>
+        </tr>
+        
+        {% for sale in sales_data %}
+        <tr>
+            <td>{{ sale.year }}</td>
+            <td>{{ sale.month }}</td>
+            <td>{{ sale.country }}</td>
+            <td>{{ sale.product }}</td>
+            <td>{{ sale.sales }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Pagination Section -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if sales_data.has_previous %}
+                <a href="?page=1" class="pagination-link">&laquo; first</a>
+                <a href="?page={{ sales_data.previous_page_number }}" class="pagination-link">previous</a>
+            {% endif %}
+            <span class="current-page">
+                Page {{ sales_data.number }} of {{ sales_data.paginator.num_pages }}.
+            </span>
+            {% if sales_data.has_next %}
+                <a href="?page={{ sales_data.next_page_number }}" class="pagination-link">next</a>
+                <a href="?page={{ sales_data.paginator.num_pages }}" class="pagination-link">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

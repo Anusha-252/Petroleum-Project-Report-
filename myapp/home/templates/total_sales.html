@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Total Sales by Petroleum Product</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; margin: 0; padding: 0;">
+    <h1 style="background-color: #3498db; color: #fff; padding: 20px; font-size: 36px; letter-spacing: 2px;">Total Sales by Petroleum Product</h1>
+    <hr style="border: 1px solid #3498db; margin: 20px 0;">
+    <p style="font-size: 18px;">This page lists the total sale of each petroleum product mentioned by problem iii of the assignment.</p>
+    
+    <table style="border-collapse: collapse; width: 80%; margin: 0 auto;">
+        <tr style="background-color: #3498db; color: #fff;">
+            <th style="padding: 10px;">Petroleum Product</th>
+            <th style="padding: 10px;">Total Sales</th>
+        </tr>
+        {% for product in total_sales %}
+            <tr style="background-color: #f0f0f0; border: 1px solid #3498db;">
+                <td style="padding: 10px;">{{ product.product__name }}</td>
+                <td style="padding: 10px;">{{ product.total_sale }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
